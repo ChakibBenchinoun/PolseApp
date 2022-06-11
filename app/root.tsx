@@ -9,6 +9,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+import clsx from 'clsx'
+import {motion} from 'framer-motion'
+import React from 'react'
+import MenuIcon from './components/icons/menu-icon'
 import styles from './styles/app.css'
 
 export function links() {
@@ -77,45 +81,111 @@ function Document({
 }
 
 function Layout() {
+  const [showMenu, setShowMenu] = React.useState(false)
+  const ulVariants = {
+    open: {
+      transition: {staggerChildren: 0.07, delayChildren: 0.2},
+    },
+    closed: {
+      transition: {staggerChildren: 0.05, staggerDirection: -2},
+    },
+  }
+  const liVariants = {
+    open: {
+      y: 0,
+      opacity: 1,
+    },
+    closed: {
+      y: -50,
+      opacity: 0,
+    },
+  }
   return (
-    <div className="flex justify-between py-14 max-w-6xl mx-auto">
-      <Link to="/">
-        <img
-          className="inline-block"
-          src="https://pulseapp.com/img/pulse-logo.svg"
-          alt=""
-        />
-      </Link>
-      <div className="flex items-center">
-        {navigation.map(link => (
-          <NavLink
-            className="text-primary font-bold mr-10 hover:text-textColor"
-            key={link.name}
-            to={link.to}
-          >
-            {({isActive}) =>
-              isActive ? (
-                <span className="text-textColor">{link.name}</span>
-              ) : (
-                link.name
-              )
-            }
-          </NavLink>
-        ))}
-        <Link
-          className="text-primary font-bold border-2 hover:shadow-button hover:translate-x-1 hover:-translate-y-1 border-primary px-5 py-1"
-          to="/"
-        >
-          Sign Up
-        </Link>
+    <>
+      <div className="md:hidden">
+        <div className="bg-white border-b-2 p-5 flex items-center justify-between">
+          <img
+            className="inline-block"
+            src="https://pulseapp.com/img/pulse-logo.svg"
+            alt=""
+          />
+          <button onClick={() => setShowMenu(!showMenu)}>
+            <MenuIcon className="text-primary w-16 h-10" />
+          </button>
+        </div>
+        <motion.div initial={false} animate={showMenu ? 'open' : 'closed'}>
+          <div className={clsx(showMenu ? 'block' : 'hidden', 'h-screen')}>
+            <motion.ul variants={ulVariants} className="py-8 px-6">
+              {navigation
+                .concat([
+                  {name: 'Contact', to: '/contact'},
+                  {name: 'Support', to: '/support'},
+                ])
+                .map(item => (
+                  <motion.li
+                    variants={liVariants}
+                    whileHover={{scale: 1.1, x: 20}}
+                    whileTap={{scale: 0.95}}
+                    key={item.name}
+                    className="mb-3"
+                  >
+                    <Link
+                      to={item.to}
+                      className="text-4xl text-primary font-bold"
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.li>
+                ))}
+              <motion.button
+                variants={liVariants}
+                className="bg-gradient-to-r from-[#00ab6a] to-[#23ea76] py-4 px-8 font-bold tracking-wider mt-5 "
+              >
+                Sign Up for a 30-Day Trial
+              </motion.button>
+            </motion.ul>
+          </div>
+        </motion.div>
       </div>
-    </div>
+      <div className="md:flex justify-between py-14 max-w-6xl mx-auto px-5 hidden">
+        <Link to="/">
+          <img
+            className="inline-block"
+            src="https://pulseapp.com/img/pulse-logo.svg"
+            alt=""
+          />
+        </Link>
+        <div className="flex items-center">
+          {navigation.map(link => (
+            <NavLink
+              className="text-primary font-bold mr-10 hover:text-textColor"
+              key={link.name}
+              to={link.to}
+            >
+              {({isActive}) =>
+                isActive ? (
+                  <span className="text-textColor">{link.name}</span>
+                ) : (
+                  link.name
+                )
+              }
+            </NavLink>
+          ))}
+          <Link
+            className="text-primary font-bold border-2 hover:shadow-button hover:translate-x-1 hover:-translate-y-1 border-primary px-5 py-1"
+            to="/"
+          >
+            Sign Up
+          </Link>
+        </div>
+      </div>
+    </>
   )
 }
 
 function Footer() {
   return (
-    <div className="bg-black w-full left-0 absolute">
+    <div className="bg-black w-full left-0 absolute overflow-hidden">
       <div className="pt-20 max-w-6xl mx-auto">
         <div className="flex">
           <div className="w-1/2">
