@@ -187,16 +187,16 @@ function Footer() {
   return (
     <div className="bg-black w-full left-0 absolute overflow-hidden">
       <div className="pt-20 max-w-6xl mx-auto">
-        <div className="flex">
-          <div className="w-1/2">
-            <Link className="h-full w-full" to="/">
+        <div className="lg:flex block">
+          <div className="lg:w-1/2 w-full lg:ml-5 xl:ml-0 px-6 lg:px-0 flex flex-col items-center lg:block">
+            <Link className="h-full lg:w-full" to="/">
               <img src="https://pulseapp.com/img/pulse-logo.svg" alt="" />
             </Link>
-            <button className="bg-gradient-to-r from-[#00ab6a] to-[#23ea76] py-4 px-8 font-bold tracking-wider mt-14">
+            <button className="bg-gradient-to-r from-[#00ab6a] to-[#23ea76] py-4 px-8 font-bold tracking-wider lg:mt-14 mt-5 w-full lg:w-fit">
               Sign Up for a 30-Day Trial
             </button>
           </div>
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid grid-cols-3 gap-16 mt-8 lg:mt-0 px-6 lg:px-0">
             {footerLinks.map(col => (
               <div className="flex flex-col" key={col.section}>
                 <h1 className="text-white font-extrabold capitalize tracking-wider">
@@ -215,7 +215,7 @@ function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-20 mb-4 max-w-lg">
+        <div className="lg:mt-20 my-10 lg:mb-4 px-5 lg:px-0 max-w-lg">
           <p className="text-gray-500 text-xs">
             ©2019 Pulseapp.com, Inc. All Rights Reserved |{' '}
             <Link to="/">Terms of Use</Link> |{' '}
