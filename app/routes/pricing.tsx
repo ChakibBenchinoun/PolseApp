@@ -95,7 +95,7 @@ export default function Pricing() {
               </div>
             </div>
           </div>
-          <div className="border-2 border-gray-200 rounded-md bg-white">
+          <div className="border-2 border-gray-200 rounded-md bg-white mt-7 lg:mt-0">
             <p className="text-center font-extralight tracking-wider bg-gray-100 text-textColor text-xs px-9 py-5">
               Complex business with multiple financial accounts, currencies, or
               auditing needs?
