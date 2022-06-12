@@ -68,7 +68,7 @@ export default function Pricing() {
                   <p className="text-xs uppercase font-extrabold tracking-wider mt-7 text-gray-500">
                     {plan.deal}, plus:
                   </p>
-                  <div className="mt-2 px-2">
+                  <div className="mt-7 lg:mt-2 px-2">
                     {plan.offers.map(offer => (
                       <p key={offer} className="mb-4 font-light text-gray-500">
                         <CheckIcon className="inline-block -ml-7 text-primary" />{' '}
@@ -95,7 +95,7 @@ export default function Pricing() {
                   <p className="text-xs uppercase font-extrabold tracking-wider mt-7 text-gray-500">
                     {plan.deal}, plus:
                   </p>
-                  <div className="mt-2 px-2">
+                  <div className="mt-7 lg:mt-2 px-2">
                     {plan.offers.map(offer => (
                       <p key={offer} className="mb-4 font-light text-gray-500">
                         <CheckIcon className="inline-block -ml-7 text-primary" />{' '}
