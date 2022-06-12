@@ -28,7 +28,6 @@ export default function Pricing() {
             any plan and try Pulse absolutely free for 30 days.
           </p>
         </div>
-
         <div className="max-w-6xl mx-auto mt-6 lg:mt-20 px-5 items-center lg:grid lg:grid-cols-3 lg:px-0">
           {plans.map(plan =>
             plan.id === 1 ? (

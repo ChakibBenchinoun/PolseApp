@@ -110,7 +110,7 @@ function Layout() {
             alt=""
           />
           <button onClick={() => setShowMenu(!showMenu)}>
-            <MenuIcon className="text-primary w-16 h-10" />
+            <MenuIcon isOpen={showMenu} className="text-primary w-10 h-10" />
           </button>
         </div>
         <motion.div initial={false} animate={showMenu ? 'open' : 'closed'}>
